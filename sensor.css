@@ -4,7 +4,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     padding: 30px;
-    margin: 30px auto; 
+    margin: 20px auto 0;
     background-color: white;
     border-radius: 10px;
     border: 2px solid #4a7c3a;

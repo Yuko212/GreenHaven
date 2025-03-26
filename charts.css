@@ -1,7 +1,7 @@
 /* Estilos específicos para a página de gráficos */
 .chart-container {
     width: 95%;
-    margin: 20px auto;
+    margin: 20px auto 0;
     padding: 15px;
 }
 
