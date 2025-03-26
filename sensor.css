@@ -4,10 +4,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     padding: 30px;
-    margin: auto;
+    margin: 30px auto; /* Adicionei margem superior de 30px */
     background-color: white;
     border-radius: 10px;
     border: 2px solid #4a7c3a;
+    width: 90%; /* Adicionei largura relativa */
+    max-width: 800px; /* Limite máximo de largura */
 }
 
 .sensor-item {
