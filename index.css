@@ -163,10 +163,23 @@ input:checked + .slider:before {
     content: "Modo Automático";
 }
 
-/* Quando no modo manual */
-#modeToggle:not(:checked) ~ .mode-status::before,
-.container:has(#modeToggle:not(:checked)) .mode-status::before {
-    content: "Modo Manual";
+#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn,
+.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn {
+    background-color: #9ac779 !important;
+    color: #2f6532 !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn:hover,
+.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn:hover {
+    background-color: #7a9e71 !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
 }
 
 /* Estilo dos botões no modo automático */
@@ -181,6 +194,7 @@ input:checked + .slider:before {
     transform: none !important;
     box-shadow: none !important;
 }
+
 
 /* Painel de sensores */
 .sensor-panel {
@@ -266,7 +280,12 @@ input:checked + .slider:before {
 
 @media (max-width: 400px) {
     .buttons-container {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        justify-content: center;
+        max-width: 300px;
+        margin: 0 auto;
     }
     
     .mode-toggle {
