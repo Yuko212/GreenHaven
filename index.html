@@ -18,30 +18,102 @@
                 <a href="charts.html"><img src="chart-icon.png" alt="Gráficos"></a>
             </div>
         </div>
+        
         <div class="status-box">
             <h2>Status <span class="status-indicator"></span></h2>
             <div class="buttons-container">
-                <button>Ligar Lâmpada</button>
-                <button>Ligar Bomba d'água</button>
-                <button>Ligar Aquecedor</button>
-                <button>Ligar Cooler</button>
+                <button class="device-btn">Ligar Lâmpada</button>
+                <button class="device-btn">Ligar Bomba d'água</button>
+                <button class="device-btn">Ligar Aquecedor</button>
+                <button class="device-btn">Ligar Cooler</button>
             </div>
         </div>
+        
         <div class="mode-toggle">
             <img src="auto-icon.png" alt="Modo Automático">
             <label class="toggle-switch">
-                <input type="checkbox">
+                <input type="checkbox" id="modeToggle" name="modeToggle">
                 <span class="slider"></span>
             </label>
             <img src="manual-icon.png" alt="Modo Manual">
         </div>
+        
         <div class="sensor-container">
-            <div class="sensor-box"><img src="sun-icon.png" alt="Sol"> Luminosidade 0%</div>
-            <div class="sensor-box"><img src="drop-icon.png" alt="Gota"> Umidade 0%</div>
-            <div class="sensor-box"><img src="thermometer-icon.png" alt="Termômetro"> Temperatura 0°C</div>
-            <div class="sensor-box"><img src="water-level-icon.png" alt="Nível de Água"> Nível de Água 0%</div>
+            <div class="sensor-panel">
+                <h3>Monitoramento Ambiental</h3>
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <img src="sun-icon.png" alt="Sol">
+                            <span>Luminosidade</span>
+                        </div>
+                        <div class="sensor-values">
+                            <div class="sensor-value">
+                                <span>Atual:</span>
+                                <span class="current-value">0%</span>
+                            </div>
+                            <div class="sensor-range">
+                                <span>Min: 20%</span>
+                                <span>Max: 80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <img src="drop-icon.png" alt="Gota">
+                            <span>Umidade</span>
+                        </div>
+                        <div class="sensor-values">
+                            <div class="sensor-value">
+                                <span>Atual:</span>
+                                <span class="current-value">0%</span>
+                            </div>
+                            <div class="sensor-range">
+                                <span>Min: 40%</span>
+                                <span>Max: 70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <img src="thermometer-icon.png" alt="Termômetro">
+                            <span>Temperatura</span>
+                        </div>
+                        <div class="sensor-values">
+                            <div class="sensor-value">
+                                <span>Atual:</span>
+                                <span class="current-value">0°C</span>
+                            </div>
+                            <div class="sensor-range">
+                                <span>Min: 18°C</span>
+                                <span>Max: 28°C</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="sensor-card">
+                        <div class="sensor-header">
+                            <img src="water-level-icon.png" alt="Nível de Água">
+                            <span>Nível de Água</span>
+                        </div>
+                        <div class="sensor-values">
+                            <div class="sensor-value">
+                                <span>Atual:</span>
+                                <span class="current-value">0%</span>
+                            </div>
+                            <div class="sensor-range">
+                                <span>Min: 20%</span>
+                                <span>Max: 100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
     <footer>
         <p>GreenHaven &copy; 2024</p>
     </footer>
