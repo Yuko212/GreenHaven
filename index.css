@@ -187,7 +187,7 @@ input:checked + .slider:before {
 }
 
 #modeToggle:not(:checked) ~ .mode-status::before,
-.container:has(#modeToggle:not(:checked))) .mode-status::before {
+.container:has(#modeToggle:not(:checked)) .mode-status::before {
     content: "Modo Manual";
 }
 
