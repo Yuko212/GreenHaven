@@ -1,119 +1,25 @@
-.status-box {
-    background-color: #dff0d8;
-    padding: 15px;
-    border-radius: 10px;
-    width: 50%;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #4a7c3a;
-}
-
-.status-box h2 {
-    color: #4a7c3a;
-}
-
-.status-indicator {
-    width: 20px;
-    height: 20px;
-    background-color: limegreen;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.buttons-container {
+/* Estilos específicos da página sensor.html */
+.sensor-box {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding: 10px;
-}
-
-.buttons-container button {
-    background-color: #9ac779;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.mode-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.mode-toggle img {
-    width: 80px;
-    margin: 0 10px;
-}
-
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 25px;
-}
-
-.toggle-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #cce3c1;
-    border: 2px solid #2f6532;
-    border-radius: 25px;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 2px;
-    background-color: #2f6532;
-    border-radius: 50%;
-    transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: #2f6532;
-}
-
-input:checked + .slider:before {
-    transform: translateX(24px);
+    padding: 30px;
+    margin: auto;
     background-color: white;
-}
-
-.sensor-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.sensor-box {
-    background-color: #4a7c3a;
-    color: white;
-    padding: 10px;
-    margin: 5px;
     border-radius: 10px;
+    border: 2px solid #4a7c3a;
+}
+
+.sensor-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
+    padding: 10px;
+    background-color: #dff0d8;
+    border-radius: 10px;
+    border: 2px solid #4a7c3a;
 }
 
-.sensor-box img {
-    width: 25px;
+.sensor-item span {
+    font-weight: bold;
 }
