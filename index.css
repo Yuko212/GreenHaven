@@ -174,7 +174,7 @@ input:checked + .slider:before {
 
 #modeToggle:checked ~ .mode-status::before,
 .container:has(#modeToggle:checked) .mode-status::before {
-    content: "Modo Automático";
+    content: "";
 }
 
 /* Modo Manual ATIVADO (checkbox NÃO marcado) */
@@ -192,7 +192,7 @@ input:checked + .slider:before {
 
 #modeToggle:not(:checked) ~ .mode-status::before,
 .container:has(#modeToggle:not(:checked)) .mode-status::before {
-    content: "Modo Manual";
+    content: "";
 }
 
 
@@ -295,7 +295,7 @@ input:checked + .slider:before {
     gap: 15px; /* Aumentei o gap */
     padding: 15px;
     width: 100%;
-    margin: 20px auto 0;
+    margin: 40px auto 0;
 }
 
 .buttons-container .device-btn {
