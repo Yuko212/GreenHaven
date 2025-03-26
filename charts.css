@@ -1,0 +1,63 @@
+/* Estilos específicos para a página de gráficos */
+.chart-container {
+    width: 95%;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.time-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-btn {
+    padding: 8px 15px;
+    background-color: #9ac779;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #2f6532;
+    transition: all 0.3s;
+}
+
+.time-btn:hover {
+    background-color: #7a9e71;
+    color: white;
+}
+
+.time-btn.active {
+    background-color: #4a7c3a;
+    color: white;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.chart-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chart-card h3 {
+    color: #4a7c3a;
+    margin-top: 0;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .time-filters {
+        flex-wrap: wrap;
+    }
+}

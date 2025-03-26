@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenHaven - Gráficos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/charts.css">
+    <!-- CDN do Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Logo GreenHaven">
+            <h1>GreenHaven</h1>
+            <div class="icons">
+                <a href="index.html"><img src="home-icon.png" alt="Home"></a>
+                <a href="sensor.html"><img src="wifi-icon.png" alt="Sensores"></a>
+                <a href="charts.html"><img src="chart-icon.png" alt="Gráficos"></a>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <!-- Filtros de período -->
+            <div class="time-filters">
+                <button class="time-btn active" data-period="24h">24h</button>
+                <button class="time-btn" data-period="7d">7 dias</button>
+                <button class="time-btn" data-period="30d">30 dias</button>
+                <button class="time-btn" data-period="custom">Personalizado</button>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Temperatura (°C)</h3>
+                    <canvas id="tempChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Umidade (%)</h3>
+                    <canvas id="humidityChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Luminosidade</h3>
+                    <canvas id="lightChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Nível de Água</h3>
+                    <canvas id="waterChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>GreenHaven &copy; 2024</p>
+    </footer>
+
+    <script src="js/charts.js"></script>
+</body>
+</html>
