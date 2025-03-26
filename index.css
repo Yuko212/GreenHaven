@@ -47,16 +47,15 @@
 
 /* Estilo dos botões no modo manual (padrão) */
 .device-btn {
-    background-color: #9ac779;
-    border: none;
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    color: #2f6532;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .device-btn:hover {
@@ -146,6 +145,17 @@ input:checked + .slider:before {
 }
 
 /* Quando no modo automático */
+/* Efeito hover apenas no modo manual */
+#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn:hover,
+.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn:hover {
+    background-color: #7a9e71 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* CORREÇÃO DA INDICAÇÃO DE MODO */
+/* Modo Automático ATIVADO (checkbox marcado) */
 #modeToggle:checked ~ .auto-icon,
 .container:has(#modeToggle:checked) .auto-icon {
     opacity: 1;
@@ -163,36 +173,22 @@ input:checked + .slider:before {
     content: "Modo Automático";
 }
 
-#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn,
-.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn {
-    background-color: #9ac779 !important;
-    color: #2f6532 !important;
-    cursor: pointer !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
-    border: none !important;
-    transition: all 0.3s ease !important;
+/* Modo Manual ATIVADO (checkbox NÃO marcado) */
+#modeToggle:not(:checked) ~ .auto-icon,
+.container:has(#modeToggle:not(:checked)) .auto-icon {
+    opacity: 0.6;
+    filter: none;
 }
 
-#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn:hover,
-.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn:hover {
-    background-color: #7a9e71 !important;
-    color: white !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+#modeToggle:not(:checked) ~ .manual-icon,
+.container:has(#modeToggle:not(:checked)) .manual-icon {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(74, 124, 58, 0.5));
 }
 
-/* Estilo dos botões no modo automático */
-#modeToggle:checked ~ .status-box .buttons-container .device-btn,
-.container:has(#modeToggle:checked) .buttons-container .device-btn {
-    background-color: #e0e0e0 !important;
-    color: #9e9e9e !important;
-    cursor: not-allowed !important;
-    opacity: 0.8 !important;
-    pointer-events: none !important;
-    border: 1px solid #cccccc !important;
-    transform: none !important;
-    box-shadow: none !important;
+#modeToggle:not(:checked) ~ .mode-status::before,
+.container:has(#modeToggle:not(:checked))) .mode-status::before {
+    content: "Modo Manual";
 }
 
 
@@ -278,16 +274,33 @@ input:checked + .slider:before {
     }
 }
 
+#modeToggle:not(:checked) ~ .status-box .buttons-container .device-btn,
+.container:has(#modeToggle:not(:checked)) .buttons-container .device-btn {
+    background-color: #9ac779 !important;
+    color: #2f6532 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    border: none !important;
+}
+
 @media (max-width: 400px) {
-    .buttons-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        justify-content: center;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-    
+/* CORREÇÃO DO ALINHAMENTO */
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.buttons-container .device-btn {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    pointer-events: none;
+    border: 1px solid #cccccc;
+}
+
     .mode-toggle {
         flex-wrap: wrap;
         gap: 10px;
