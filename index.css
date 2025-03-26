@@ -285,6 +285,7 @@ input:checked + .slider:before {
     cursor: pointer !important;
     pointer-events: auto !important;
     border: none !important;
+    margin: 20px auto 0;
 }
 
 @media (max-width: 400px) {
@@ -295,7 +296,7 @@ input:checked + .slider:before {
     gap: 15px; /* Aumentei o gap */
     padding: 15px;
     width: 100%;
-    margin: 40px auto 0;
+    margin: 20px auto 0;
 }
 
 .buttons-container .device-btn {
@@ -304,6 +305,7 @@ input:checked + .slider:before {
     cursor: not-allowed;
     pointer-events: none;
     border: 1px solid #cccccc;
+    margin: 20px auto 0;
 }
 
     .mode-toggle {
