@@ -79,3 +79,32 @@
         flex-wrap: wrap;
     }
 }
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 200px;
+    background: #f2f2f2;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bar {
+    width: 30px;
+    border-radius: 5px;
+    transition: height 0.5s;
+}
+
+/* Estilos para gráfico de pizza */
+.pie-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ffcc66 0deg 120deg, 
+        #66ccff 120deg 240deg, 
+        #ff6666 240deg 360deg
+    );
+    margin: 0 auto;
+}
