@@ -1,27 +1,27 @@
 /* Estilos específicos da página sensor.html */
 .sensor-box {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 30px;
-    margin: 20px auto 0;
-    background-color: white;
-    border-radius: 10px;
-    border: 2px solid #4a7c3a;
-    width: 90%; 
-    max-width: 800px; 
+    grid-template-columns: repeat(2, 1fr);  /* Grid de 2 colunas */
+    gap: 10px;  /* Espaço entre os itens */
+    padding: 30px;  /* Espaçamento interno */
+    margin: 20px auto 0;  /* Centraliza na horizontal com margem no topo */
+    background-color: white;  /* Fundo branco */
+    border-radius: 10px;  /* Bordas arredondadas */
+    border: 2px solid #4a7c3a;  /* Borda verde */
+    width: 90%;  /* Largura relativa ao container pai */
+    max-width: 800px;  /* Largura máxima */
 }
 
 .sensor-item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #dff0d8;
-    border-radius: 10px;
-    border: 2px solid #4a7c3a;
+    align-items: center;  /* Alinha os itens verticalmente */
+    justify-content: space-between;  /* Distribui o espaço entre os elementos */
+    padding: 10px;  /* Espaçamento interno */
+    background-color: #dff0d8;  /* Fundo verde claro */
+    border-radius: 10px;  /* Bordas arredondadas */
+    border: 2px solid #4a7c3a;  /* Borda verde escura */
 }
 
 .sensor-item span {
-    font-weight: bold;
+    font-weight: bold;  /* Texto em negrito */
 }
