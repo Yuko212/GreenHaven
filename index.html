@@ -29,23 +29,23 @@
         </div>
         
         <div class="status-box">
-            <h2>Status <span class="status-indicator"></span></h2>
+            <h2>Status <span class="status-indicator"></span></h2>  <!-- Título + indicador visual (ex: LED) -->
             <div class="buttons-container">
-                <button class="device-btn">Ligar Iluminação</button>
-                <button class="device-btn">Ligar Irrigação</button>
-                <button class="device-btn">Ligar Aquecimento</button>
-                <button class="device-btn">Ligar Ventilação</button>
+                <button class="device-btn">Ligar Iluminação</button>  <!-- Botão para controle de luz -->
+                <button class="device-btn">Ligar Irrigação</button>  <!-- Botão para irrigação -->
+                <button class="device-btn">Ligar Aquecimento</button>  <!-- Botão para aquecimento -->
+                <button class="device-btn">Ligar Ventilação</button>  <!-- Botão para ventilação -->
             </div>
         </div>
         
         <div class="mode-toggle">
-            <img src="auto-icon.png" alt="Modo Automático" class="mode-icon auto-icon">
+            <img src="auto-icon.png" alt="Modo Automático" class="mode-icon auto-icon">  <!-- Ícone do modo automático -->
             <label class="toggle-switch">
-                <input type="checkbox" id="modeToggle" name="modeToggle" checked>
-                <span class="slider"></span>
+                <input type="checkbox" id="modeToggle" name="modeToggle" checked>  <!-- Checkbox do toggle -->
+                <span class="slider"></span>  <!-- Estilo do botão deslizante -->
             </label>
-            <img src="manual-icon.png" alt="Modo Manual" class="mode-icon manual-icon">
-            <span class="mode-status"></span>
+            <img src="manual-icon.png" alt="Modo Manual" class="mode-icon manual-icon">  <!-- Ícone do modo manual -->
+            <span class="mode-status"></span>  <!-- Exibe o status atual (Auto/Manual) -->
         </div>
         
         <div class="sensor-container">
@@ -54,17 +54,17 @@
                 <div class="sensor-grid">
                     <div class="sensor-card">
                         <div class="sensor-header">
-                            <img src="sun-icon.png" alt="Sol">
-                            <span>Luminosidade</span>
+                            <img src="sun-icon.png" alt="Sol">  <!-- Ícone do sensor -->
+                            <span>Luminosidade</span>  <!-- Nome do sensor -->
                         </div>
                         <div class="sensor-values">
                             <div class="sensor-value">
                                 <span>Atual:</span>
-                                <span class="current-value">0%</span>
+                                <span class="current-value">0%</span>  <!-- Valor dinâmico (será atualizado via JS) -->
                             </div>
                             <div class="sensor-range">
-                                <span>Min: 0%</span>
-                                <span>Max: 80%</span>
+                                <span>Min: 0%</span>  <!-- Valor mínimo -->
+                                <span>Max: 80%</span>  <!-- Valor máximo -->
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
     </div>
     
     <footer>
-        <p>GreenHaven &copy; 2024</p>
+        <p>GreenHaven &copy; 2024</p>  <!-- Créditos e copyright -->
     </footer>
 </body>
 </html>
