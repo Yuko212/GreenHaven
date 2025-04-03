@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html>  <!-- Define que o documento é HTML5 -->
+<html lang="pt-BR">  <!-- Idioma português do Brasil -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenHaven</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">  <!-- Define a codificação de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Responsividade para mobile -->
+    <title>GreenHaven</title>  <!-- Título da página (aparece na aba do navegador) -->
+    <link rel="stylesheet" href="style.css">  <!-- Link para o arquivo CSS principal -->
+    <link rel="stylesheet" href="nav.css">  <!-- CSS específico para a barra de navegação -->
+    <link rel="stylesheet" href="index.css">  <!-- CSS específico desta página -->
 </head>
 <body>
-    <div id="nav-placeholder"></div>
+    <div id="nav-placeholder"></div>  <!-- Espaço reservado para a navbar -->
     <script>
-        fetch('nav.html')
-            .then(response => response.text())
+        fetch('nav.html')  //Busca o arquivo nav.html
+            .then(response => response.text())  //Converte a resposta em texto 
             .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
+                document.getElementById('nav-placeholder').innerHTML = data;  //Insere o conteúdo no placeholder
             });
     </script>
     <div class="container">
