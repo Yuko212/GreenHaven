@@ -1,71 +1,71 @@
 /* Estilos globais e compartilhados entre as páginas */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #eff7e1;
-    text-align: center;
+    font-family: Arial, sans-serif;  /* Fonte padrão */
+    background-color: #eff7e1;  /* Cor de fundo (verde claro) */
+    text-align: center;  /* Centraliza textos */
     margin: 0;
     padding: 0;
-    margin-left: 250px;
+    margin-left: 250px;  /* Espaço para uma sidebar (não visível no HTML) */
 }
 
 .container {
     width: 100%;
-    max-width: 900px;
-    margin: auto;
-    background-color: #f0f7eb;
+    max-width: 900px;  /* Largura máxima */
+    margin: auto;  /* Centraliza na tela */
+    background-color: #f0f7eb;  /* Fundo branco-esverdeado */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;  /* Bordas arredondadas */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column;  /* Organiza os itens em coluna */
+    align-items: center;  /* Centraliza horizontalmente */
 }
 
 .header {
     width: 100%;
-    background-color: #7a9e71;
+    background-color: #7a9e71;  /* Verde escuro */
     padding: 10px 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px 10px 0 0;
+    justify-content: space-between;  /* Alinha logo e ícones nas extremidades */
+    align-items: center;  /* Centraliza verticalmente */
+    border-radius: 10px 10px 0 0;  /* Bordas arredondadas só no topo */
 }
 
 .header img {
-    width: 80px;
-    margin-left: 20px;
+    width: 80px;  /* Tamanho do logo */
+    margin-left: 20px;  /* Espaçamento à esquerda */
 }
 
 h1 {
-    color: white;
+    color: white;  /* Cor do título */
     font-size: 2rem;
     margin: 0;
-    flex-grow: 1;
+    flex-grow: 1;  /* Ocupa espaço restante entre logo e ícones */
 }
 
 .icons {
-    margin-right: 20px;
+    margin-right: 20px;  /* Espaçamento à direita */
 }
 
 .icons a {
-    text-decoration: none;
-    margin: 0 5px;
+    text-decoration: none;  /* Remove sublinhado dos links */
+    margin: 0 5px;  /* Espaço entre ícones */
 }
 
 .icons img {
-    width: 40px;
-    cursor: pointer;
+    width: 40px;  /* Tamanho dos ícones */
+    cursor: pointer;  /* Muda cursor para "clicável" */
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: 20px;  /* Espaço acima do rodapé */
     padding: 10px;
-    color: #4a7c3a;
+    color: #4a7c3a;  /* Cor do texto (verde escuro) */
 }
 
 .indicator {
     width: 20px;
     height: 20px;
-    background-color: limegreen;
-    border-radius: 50%;
+    background-color: limegreen;  /* Cor padrão (ativo) */
+    border-radius: 50%;  /* Formato circular */
 }
