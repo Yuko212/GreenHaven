@@ -8,9 +8,8 @@
     background-color: white;
     border-radius: 10px;
     border: 2px solid #4a7c3a;
-    width: 90%;
-    max-width: 800px;
-    margin-left: 250px; /* Ajuste essa margem conforme necessário */
+    width: 90%; 
+    max-width: 800px; 
 }
 
 .sensor-item {
