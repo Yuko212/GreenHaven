@@ -17,6 +17,7 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
+
     <div class="container">
         <div class="header">
             <img src="logo.png" alt="Logo GreenHaven">
@@ -41,29 +42,36 @@
             <div class="chart-grid">
                 <div class="chart-card">
                     <h3>Temperatura (°C)</h3>
-                    <canvas id="tempChart"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h3>Temperatura (°C)</h3>
-                    <div class="chart-container">
-                        <canvas id="tempChart"></canvas>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 80%; background-color: #ff6666;"></div>
+                        <div class="bar" style="height: 60%; background-color: #ff9966;"></div>
+                        <div class="bar" style="height: 40%; background-color: #ffcc66;"></div>
                     </div>
                 </div>
+
                 <div class="chart-card">
                     <h3>Luminosidade</h3>
-                    <canvas id="lightChart"></canvas>
+                    <div class="pie-chart">
+                        <div class="slice slice1"></div>
+                        <div class="slice slice2"></div>
+                        <div class="slice slice3"></div>
+                    </div>
                 </div>
+
                 <div class="chart-card">
                     <h3>Nível de Água</h3>
-                    <canvas id="waterChart"></canvas>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 90%; background-color: #66ccff;"></div>
+                        <div class="bar" style="height: 50%; background-color: #66b2ff;"></div>
+                        <div class="bar" style="height: 30%; background-color: #6699ff;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <footer>
         <p>GreenHaven &copy; 2024</p>
     </footer>
-
-    <script src="charts.js"></script>
 </body>
 </html>
