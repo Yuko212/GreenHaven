@@ -1,52 +1,52 @@
 /* nav.css */
 .side-nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 250px;
-    background-color: #7a9e71;
+    position: fixed; /* Fixa a navbar na tela */
+    left: 0; /* Posiciona no canto esquerdo */
+    top: 0; 
+    height: 100vh; /* Altura total da tela */
+    width: 250px; /* Largura da sidebar */
+    background-color: #7a9e71; /* Cor verde escura */
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza os itens em coluna */
     padding: 20px 0;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    z-index: 100;
-}
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);  /* Sombra sutil */
+    z-index: 100; /* Garante que fique acima de outros elementos */
+} 
 
 .nav-header {
     text-align: center;
     padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Linha divisória sutil */
 }
 
 .nav-logo {
-    width: 60px;
+    width: 60px; /* Tamanho reduzido do logo */
     margin-bottom: 10px;
 }
 
 .nav-links {
-    list-style: none;
+    list-style: none; /* Remove marcadores de lista */
     padding: 20px 0;
-    flex-grow: 1;
+    flex-grow: 1; /* Ocupa todo o espaço vertical disponível */
 }
 
 .nav-link {
     display: flex;
-    align-items: center;
+    align-items: center;  /* Alinha ícone + texto verticalmente */
     padding: 12px 20px;
     color: white;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
 .nav-link:hover {
-    background-color: #6a8d61;
+    background-color: #6a8d61; /* Verde mais claro no hover */
 }
 
 .nav-link img {
     width: 24px;
-    margin-right: 15px;
+    margin-right: 15px; /* Espaço entre ícone e texto */
 }
 
 .nav-link span {
@@ -54,8 +54,8 @@
 }
 
 .nav-link.active {
-    background-color: #5a7d51;
-    border-left: 4px solid #fff;
+    background-color: #5a7d51; /* Verde mais escuro */
+    border-left: 4px solid #fff; /* Destaque lateral */
     font-weight: bold;
 }
 
@@ -63,8 +63,8 @@
     padding: 15px 20px;
     text-align: center;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7); /* Texto semi-transparente */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Linha divisória */
 }
 
 /* Adaptação para o conteúdo principal */
@@ -73,19 +73,19 @@
     width: calc(100% - 250px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) {  /* Estilos aqui só serão aplicados quando a tela tiver NO MÁXIMO 768px de largura */
     .side-nav {
         width: 200px;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
+        transform: translateX(-100%); /* Esconde a sidebar */
+        transition: transform 0.3s ease; /* Animação ao abrir/fechar */
     }
     
     .side-nav.active {
-        transform: translateX(0);
+        transform: translateX(0); /* Mostra a sidebar */
     }
     
     .container {
-        margin-left: 0;
+        margin-left: 0; /* Remove o espaço da sidebar */
         width: 100%;
     }
     
