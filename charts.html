@@ -11,7 +11,7 @@
 <body>
     <div id="nav-placeholder"></div>
     <script>
-        fetch('nav.html')
+        fetch('nav.html') //Carrega a navbar dinamicamente
             .then(response => response.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
@@ -39,8 +39,8 @@
             </div>
 
             <!-- Gráficos -->
-            <div class="chart-grid">
-                <div class="chart-card">
+            <div class="chart-grid"> 
+                <div class="chart-card">  <!-- Gráfico de Temperatura -->
                     <h3>Temperatura (°C)</h3>
                     <div class="bar-chart">
                         <div class="bar" style="height: 80%; background-color: #ff6666;"></div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="chart-card">
+                <div class="chart-card"> <!-- Gráfico de Luminosidade -->
                     <h3>Luminosidade</h3>
                     <div class="pie-chart">
                         <div class="slice slice1"></div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="chart-card">
+                <div class="chart-card"> <!-- Gráfico de Nível de Água -->
                     <h3>Nível de Água</h3>
                     <div class="bar-chart">
                         <div class="bar" style="height: 90%; background-color: #66ccff;"></div>
