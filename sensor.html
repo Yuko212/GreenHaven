@@ -11,14 +11,14 @@
 <body>
     <div id="nav-placeholder"></div>
     <script>
-        fetch('nav.html')
+        fetch('nav.html') //Carrega a navbar de um arquivo externo
             .then(response => response.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
     <div class="container">
-        <div class="header">
+        <div class="header"> <!-- Cabeçalho idêntico ao index -->
             <img src="logo.png" alt="Logo GreenHaven">
             <h1>GreenHaven</h1>
             <div class="icons">
@@ -27,9 +27,9 @@
                 <a href="charts.html"><img src="chart-icon.png" alt="Gráficos"></a>
             </div>
         </div>
-        <div></div>
-        <div class="sensor-box">
-            <div class="sensor-item"><span>Sensor DHT 11</span><div class="indicator"></div><span>Leitura: 0%</span></div>
+        <div></div> <!-- Espaço vazio (para ajuste de layout) -->
+        <div class="sensor-box"> <!-- Lista de sensores -->
+            <div class="sensor-item"><span>Sensor DHT 11</span><div class="indicator"> <!-- Indicador visual (ex: LED) --> </div><span>Leitura: 0%</span><!-- Valor dinâmico (atualizado via JS) --></div> 
             <div class="sensor-item"><span>Cooler</span><div class="indicator"></div><span>Leitura: Ligado</span></div>
             <div class="sensor-item"><span>Sensor LDR</span><div class="indicator"></div><span>Leitura: 0%</span></div>
             <div class="sensor-item"><span>Lâmpada</span><div class="indicator"></div><span>Leitura: Ligada</span></div>
@@ -40,7 +40,7 @@
         </div>
     </div>
     <footer>
-        <p>GreenHaven &copy; 2024</p>
+        <p>GreenHaven &copy; 2024</p> <!-- Créditos -->
     </footer>
 </body>
 </html>
