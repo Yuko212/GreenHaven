@@ -2,7 +2,7 @@
 .container {
     width: 100%;
     max-width: 900px;  /* Largura máxima do conteúdo */
-    margin: 20px auto 0;  /* Centraliza na horizontal com margem no topo */
+    margin: 0 auto;  /* Centraliza na tela */
     padding: 20px;
     background-color: #f0f7eb;  /* Cor de fundo verde claro */
     border-radius: 10px;  /* Bordas arredondadas */
