@@ -2,11 +2,12 @@
 .container {
     width: 100%;
     max-width: 900px;  /* Largura máxima do conteúdo */
-    margin: 0 auto;  /* Centraliza na tela */
+    margin: 20px auto 0;  /* Centraliza na tela */
     padding: 20px;
     background-color: #f0f7eb;  /* Cor de fundo verde claro */
     border-radius: 10px;  /* Bordas arredondadas */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);  /* Sombra suave */
+    position: relative;
 }
 
 .header {
