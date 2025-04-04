@@ -4,6 +4,7 @@
     margin: 20px auto 0;  /* Centralizado com margem no topo */
     padding: 15px;
     position: relative;  /* Importante para gráficos com bibliotecas (ex: Chart.js) */
+    margin-left: 250px;
 }
 
 .time-filters {
