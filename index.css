@@ -1,10 +1,8 @@
 /* Estilos gerais */
 .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* Grid de 2 colunas */
     width: 100%;
     max-width: 900px;  /* Largura máxima do conteúdo */
-    margin: 20px auto 0; /* Centraliza na tela */
+    margin: 20px auto 0;  /* Centraliza na horizontal com margem no topo */
     padding: 20px;
     background-color: #f0f7eb;  /* Cor de fundo verde claro */
     border-radius: 10px;  /* Bordas arredondadas */
