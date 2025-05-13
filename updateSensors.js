@@ -28,7 +28,7 @@ function updateSensorDisplay(data) {
         sensorDataElements[2].textContent = `${data.umidade}%`; // Umidade
         sensorDataElements[3].textContent = `${data.agua}%`; // Nível de Água
     } else {
-        console.error("Elementos .sensor-data não encontrados no DOM.");
+        console.error("Elementos .current-value não encontrados no DOM.");
     }
 }
 
