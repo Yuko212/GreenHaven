@@ -19,8 +19,8 @@ function getJsonInput() {
 // Roteador
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$resource = $uri[2] ?? null; // Ex: "leituras"
-$id = $uri[3] ?? null;
+$resource = $uri[3] ?? null; // Ex: "leituras"
+$id = $uri[4] ?? null;
 
 // Só vamos manipular a rota "/leituras"
 if ($resource !== 'leituras') {
