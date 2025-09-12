@@ -382,3 +382,4 @@ function updateVentilacao() {
         echo json_encode(["error" => "Erro ao atualizar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
     }
 }
+
