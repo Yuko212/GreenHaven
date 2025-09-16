@@ -151,12 +151,48 @@ else if ($resource == 'ventilacao') {
     }
 }
 
+else if ($resource === 'dadosesp') {
+    switch ($method) {
+    case 'GET':
+        header('Content-Type: application/json');
+        dadosesp($db);
+        break;
+    default: // Para qualquer outro método não permitido
+    http_response_code(405); // Retorna status 405 (método não permitido).
+    echo json_encode(["error" => "Método não permitido"]); // Retorna um erro em formato JSON.
+    }
+}
+
 else
 {
     http_response_code(404); // Retorna status 404 (não encontrado) se o recurso não for "controle".
     echo json_encode(["error" => "Endpoint Inexistente"]); // Retorna um erro em formato JSON.
 }
 
+function dadosesp(PDO $db) {
+    try {
+        $stmt = $db->prepare("SELECT id, valor, data_hora FROM sensores WHERE id IN (1,3)");
+        $stmt->execute();
+
+        $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Deixar mais legível: temperatura = id 1, umidade = id 3
+        $resultado = [
+            "temperatura" => null,
+            "umidade" => null
+        ];
+
+        foreach ($dados as $row) {
+            if ($row['id'] == 1) $resultado['temperatura'] = $row['valor'];
+            if ($row['id'] == 3) $resultado['umidade'] = $row['valor'];
+        }
+
+        echo json_encode(["status" => "sucesso", "sensores" => $resultado]);
+    } catch (PDOException $e) {
+        http_response_code(500);
+        echo json_encode(["status" => "erro", "mensagem" => "Erro ao buscar dados: " . $e->getMessage()]);
+    }
+}
 
 // === FUNÇÕES ===
 
@@ -383,3 +419,20 @@ function updateVentilacao() {
     }
 }
 
+//Função para atualizar o banco com as informações dos sensores
+function updateSensorDHT(PDO $db, $sensor_temp, $sensor_umi) {
+    try {
+        // Atualiza Temperatura ID 1
+        $stmt = $db->prepare("UPDATE sensores SET valor = ?, data_hora = NOW() WHERE id = 1");
+        $stmt->execute([$sensor_temp]);
+
+        // Atualiza Umidade ID 3
+        $stmt = $db->prepare("UPDATE sensores SET valor = ?, data_hora = NOW() WHERE id = 3");
+        $stmt->execute([$sensor_umi]);
+
+        echo json_encode(["message" => "Sensores atualizados com sucesso"]);
+    } catch (PDOException $e) {
+        http_response_code(500);
+        echo json_encode(["error" => "Erro ao atualizar sensor: " . $e->getMessage()]);
+    }
+}
