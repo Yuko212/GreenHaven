@@ -1,126 +1,45 @@
-<!DOCTYPE html>  <!-- Define que o documento é HTML5 -->
-<html lang="pt-BR">  <!-- Idioma português do Brasil -->
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">  <!-- Define a codificação de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Responsividade para mobile -->
-    <title>GreenHaven</title>  <!-- Título da página (aparece na aba do navegador) -->
-    <link rel="stylesheet" href="style.css">  <!-- Link para o arquivo CSS principal -->
-    <link rel="stylesheet" href="nav.css">  <!-- CSS específico para a barra de navegação -->
-    <link rel="stylesheet" href="index.css">  <!-- CSS específico desta página -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenHaven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="nav-placeholder"></div>  <!-- Espaço reservado para a navbar -->
-    <script>
-        fetch('nav.html')  //Busca o arquivo nav.html
-            .then(response => response.text())  //Converte a resposta em texto 
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;  //Insere o conteúdo no placeholder
-            });
-
-        // Função para enviar requisições à API
-        async function sendRequest(method, endpoint) {
-            try {
-                const response = await fetch(endpoint, {
-                    method: method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erro na requisição: ' + response.statusText);
-                }
-
-                const data = await response.json();
-                console.log('Sucesso:', data);
-                alert('Operação realizada com sucesso!');
-                atualizarSensores(); // Atualiza os dados dos sensores após a operação
-            } catch (error) {
-                console.error('Erro:', error);
-                alert('Erro ao comunicar com a API: ' + error.message);
-            }
-        }
-
-        // Funções para cada botão
-        function ligarIluminacao() {
-            sendRequest('PUT', '/api/iluminacao'); // Endpoint atualizado
-        }
-
-        function ligarIrrigacao() {
-            sendRequest('PUT', '/api/irrigacao'); // Endpoint atualizado
-        }
-
-        function ligarAquecimento() {
-            sendRequest('PUT', '/api/aquecimento'); // Endpoint atualizado
-        }
-
-        function ligarVentilacao() {
-            sendRequest('PUT', '/api/ventilacao'); // Endpoint atualizado
-        }
-
-        // Função para atualizar os dados dos sensores
-        async function atualizarSensores() {
-            try {
-                const response = await fetch('/api/sensores'); // Ajuste para o endpoint correto
-                const data = await response.json();
-                // Atualize a interface com os dados recebidos
-                document.querySelector('.current-value').textContent = data.luminosidade + '%'; // Exemplo de atualização
-            } catch (error) {
-                console.error('Erro ao buscar dados dos sensores:', error);
-            }
-        }
-
-        // Função para testar a API
-        async function testarApi() {
-            try {
-                const response = await fetch('/api/sensores'); // Altere para um endpoint que você sabe que existe
-                const data = await response.json();
-                console.log('Dados recebidos:', data);
-            } catch (error) {
-                console.error('Erro ao testar API:', error);
-            }
-        }
-
-        // Adicionando eventos de clique aos botões
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('.device-btn');
-            buttons[0].addEventListener('click', ligarIluminacao);
-            buttons[1].addEventListener('click', ligarIrrigacao);
-            buttons[2].addEventListener('click', ligarAquecimento);
-            buttons[3].addEventListener('click', ligarVentilacao);
-            testarApi(); // Testa a API ao carregar a página
-        });
-    </script>
+    <div id="nav-placeholder"></div>
 
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="Logo GreenHaven">  <!-- Logo do projeto -->
-            <h1>GreenHaven</h1>  <!-- Título principal -->
+            <img src="logo.png" alt="Logo GreenHaven">
+            <h1>GreenHaven</h1>
             <div class="icons">
-                <a href="index.html"><img src="home-icon.png" alt="Home"></a>  <!-- Ícone para Home -->
-                <a href="sensor.html"><img src="wifi-icon.png" alt="Sensores"></a>  <!-- Ícone para Sensores -->
-                <a href="charts.html"><img src="chart-icon.png" alt="Gráficos"></a>  <!-- Ícone para Gráficos -->
+                <a href="index.html"><img src="home-icon.png" alt="Home"></a>
+                <a href="sensor.html"><img src="wifi-icon.png" alt="Sensores"></a>
+                <a href="charts.html"><img src="chart-icon.png" alt="Gráficos"></a>
             </div>
         </div>
         
         <div class="status-box">
-            <h2>Status <span class="status-indicator"></span></h2>  <!-- Título + indicador visual (ex: LED) -->
+            <h2>Status <span class="status-indicator"></span></h2>
             <div class="buttons-container">
-                <button class="device-btn">Ligar Iluminação</button>  <!-- Botão para controle de luz -->
-                <button class="device-btn">Ligar Irrigação</button>  <!-- Botão para irrigação -->
-                <button class="device-btn">Ligar Aquecimento</button>  <!-- Botão para aquecimento -->
-                <button class="device-btn">Ligar Ventilação</button>  <!-- Botão para ventilação -->
+                <button class="device-btn">Ligar Iluminação</button>
+                <button class="device-btn">Ligar Irrigação</button>
+                <button class="device-btn">Ligar Aquecimento</button>
+                <button class="device-btn">Ligar Ventilação</button>
             </div>
         </div>
         
         <div class="mode-toggle">
-            <img src="auto-icon.png" alt="Modo Automático" class="mode-icon auto-icon">  <!-- Ícone do modo automático -->
+            <img src="auto-icon.png" alt="Modo Automático" class="mode-icon auto-icon">
             <label class="toggle-switch">
-                <input type="checkbox" id="modeToggle" name="modeToggle" checked>  <!-- Checkbox do toggle -->
-                <span class="slider"></span>  <!-- Estilo do botão deslizante -->
+                <input type="checkbox" id="modeToggle" name="modeToggle">
+                <span class="slider"></span>
             </label>
-            <img src="manual-icon.png" alt="Modo Manual" class="mode-icon manual-icon">  <!-- Ícone do modo manual -->
-            <span class="mode-status"></span>  <!-- Exibe o status atual (Auto/Manual) -->
+            <img src="manual-icon.png" alt="Modo Manual" class="mode-icon manual-icon">
+            <span class="mode-status"></span>
         </div>
         
         <div class="sensor-container">
@@ -129,17 +48,17 @@
                 <div class="sensor-grid">
                     <div class="sensor-card">
                         <div class="sensor-header">
-                            <img src="sun-icon.png" alt="Sol">  <!-- Ícone do sensor -->
-                            <span>Luminosidade</span>  <!-- Nome do sensor -->
+                            <img src="sun-icon.png" alt="Sol">
+                            <span>Luminosidade</span>
                         </div>
                         <div class="sensor-values">
                             <div class="sensor-value">
                                 <span>Atual:</span>
-                                <span class="current-value">--%</span>  <!-- Valor dinâmico (será atualizado via JS) -->
+                                <span class="current-value">--%</span>
                             </div>
                             <div class="sensor-range">
-                                <span>Min: 0%</span>  <!-- Valor mínimo -->
-                                <span>Max: 80%</span>  <!-- Valor máximo -->
+                                <span>Min: 0%</span>
+                                <span>Max: 80%</span>
                             </div>
                         </div>
                     </div>
@@ -198,11 +117,130 @@
             </div>
         </div>
     </div>
-    
+
     <footer>
-        <p>GreenHaven &copy; 2024</p>  <!-- Créditos e copyright -->
+        <p>GreenHaven &copy; 2024</p>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navbar ---
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('nav-placeholder').innerHTML = data;
+                });
+
+            // Função para enviar requisições à API
+            async function sendRequest(method, endpoint) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: method,
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+
+                    if (!response.ok) throw new Error('Erro na requisição: ' + response.statusText);
+
+                    const data = await response.json();
+                    console.log('Sucesso:', data);
+                    alert('Operação realizada com sucesso!');
+                    atualizarSensores();
+                } catch (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao comunicar com a API: ' + error.message);
+                }
+            }
+
+            // Funções para os botões
+            function ligarIluminacao() { sendRequest('PUT', '/api/iluminacao'); }
+            function ligarIrrigacao() { sendRequest('PUT', '/api/irrigacao'); }
+            function ligarAquecimento() { sendRequest('PUT', '/api/aquecimento'); }
+            function ligarVentilacao() { sendRequest('PUT', '/api/ventilacao'); }
+
+            // Atualizar sensores
+            async function atualizarSensores() {
+                try {
+                    const response = await fetch('/api/sensores');
+                    const data = await response.json();
+                    document.querySelector('.current-value').textContent = data.luminosidade + '%';
+                } catch (error) {
+                    console.error('Erro ao buscar sensores:', error);
+                }
+            }
+
+            // Testar API
+            async function testarApi() {
+                try {
+                    const response = await fetch('/api/sensores');
+                    const data = await response.json();
+                    console.log('Dados recebidos:', data);
+                } catch (error) {
+                    console.error('Erro ao testar API:', error);
+                }
+            }
+
+            // Eventos botões
+            const buttons = document.querySelectorAll('.device-btn');
+            buttons[0].addEventListener('click', ligarIluminacao);
+            buttons[1].addEventListener('click', ligarIrrigacao);
+            buttons[2].addEventListener('click', ligarAquecimento);
+            buttons[3].addEventListener('click', ligarVentilacao);
+            testarApi();
+
+            // --- Controle do Switch ---
+            const modeToggle = document.getElementById('modeToggle');
+            const modeStatus = document.querySelector('.mode-status');
+
+            // Carregar valor inicial do backend
+            async function carregarModo() {
+                try {
+                    const response = await fetch('http://localhost:88/GreenHaven/aula3004/api/switch', { method: 'GET' });
+                    const data = await response.json();
+                    console.log("Carregar modo:", data);
+
+                    if (data.atividade === 1) {
+                        modeToggle.checked = true;
+                        modeStatus.textContent = "Modo Automático";
+                    } else {
+                        modeToggle.checked = false;
+                        modeStatus.textContent = "Modo Manual";
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar modo:", error);
+                    modeToggle.checked = false;
+                    modeStatus.textContent = "Modo Automático";
+                }
+            }
+
+            // Atualizar valor no backend
+            async function atualizarModo(atividade) {
+                try {
+                    const response = await fetch('http://localhost:88/GreenHaven/aula3004/api/switch', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ atividade })
+                    });
+                    const data = await response.json();
+                    modeStatus.textContent = (data.atividade === 1) ? "Modo Manual" : "Modo Automático";
+                    console.log("Resposta PUT:", data);
+                } catch (error) {
+                    console.error("Erro ao atualizar modo:", error);
+                }
+            }
+
+            // Listener do toggle
+            modeToggle.addEventListener('change', () => {
+                const atividade = modeToggle.checked ? 1 : 0;
+                console.log("Mudou! Novo valor:", atividade);
+                atualizarModo(atividade);
+            });
+
+            // Inicializa estado
+            carregarModo();
+        });
+    </script>
+
     <script src="updateSensors.js" type="module"></script>
-</body>
 </body>
 </html>

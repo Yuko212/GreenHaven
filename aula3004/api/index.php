@@ -163,6 +163,32 @@ else if ($resource === 'dadosesp') {
     }
 }
 
+else if ($resource === 'switch') {
+    switch ($method) {
+        case 'GET':
+            $stmt = $db->query("SELECT atividade FROM controle WHERE id = 1 LIMIT 1");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            echo json_encode(["atividade" => (int)$result['atividade']]);
+            break;
+
+        case 'PUT':
+            $data = json_decode(file_get_contents("php://input"), true);
+            $atividade = isset($data['atividade']) ? (int)$data['atividade'] : 0;
+
+            $stmt = $db->prepare("UPDATE controle SET atividade = ? WHERE id = 1");
+            $stmt->execute([$atividade]);
+
+            echo json_encode(["success" => true, "atividade" => $atividade]);
+            break;
+
+        default:
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+            break;
+    }
+}
+
 else
 {
     http_response_code(404); // Retorna status 404 (não encontrado) se o recurso não for "controle".
