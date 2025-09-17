@@ -61,6 +61,15 @@
     margin: 20px auto 0;
 }
 
+.device-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.device-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Modo toggle */
 .mode-toggle {
     display: flex;

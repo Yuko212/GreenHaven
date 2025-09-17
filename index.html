@@ -25,10 +25,10 @@
         <div class="status-box">
             <h2>Status <span class="status-indicator"></span></h2>
             <div class="buttons-container">
-                <button class="device-btn">Ligar Iluminação</button>
-                <button class="device-btn">Ligar Irrigação</button>
-                <button class="device-btn">Ligar Aquecimento</button>
-                <button class="device-btn">Ligar Ventilação</button>
+                <button id="btn-iluminacao" class="device-btn">Iluminação</button>
+                <button id="btn-irrigacao" class="device-btn">Irrigação</button>
+                <button id="btn-aquecimento" class="device-btn">Aquecimento</button>
+                <button id="btn-ventilacao" class="device-btn">Ventilação</button>
             </div>
         </div>
         
@@ -131,7 +131,7 @@
                 .then(data => {
                     document.getElementById('nav-placeholder').innerHTML = data;
                 });
-
+        
             // Função para enviar requisições à API
             async function sendRequest(method, endpoint) {
                 try {
@@ -139,9 +139,9 @@
                         method: method,
                         headers: { 'Content-Type': 'application/json' }
                     });
-
+        
                     if (!response.ok) throw new Error('Erro na requisição: ' + response.statusText);
-
+        
                     const data = await response.json();
                     console.log('Sucesso:', data);
                     alert('Operação realizada com sucesso!');
@@ -151,13 +151,7 @@
                     alert('Erro ao comunicar com a API: ' + error.message);
                 }
             }
-
-            // Funções para os botões
-            function ligarIluminacao() { sendRequest('PUT', '/api/iluminacao'); }
-            function ligarIrrigacao() { sendRequest('PUT', '/api/irrigacao'); }
-            function ligarAquecimento() { sendRequest('PUT', '/api/aquecimento'); }
-            function ligarVentilacao() { sendRequest('PUT', '/api/ventilacao'); }
-
+        
             // Atualizar sensores
             async function atualizarSensores() {
                 try {
@@ -168,7 +162,7 @@
                     console.error('Erro ao buscar sensores:', error);
                 }
             }
-
+        
             // Testar API
             async function testarApi() {
                 try {
@@ -179,15 +173,7 @@
                     console.error('Erro ao testar API:', error);
                 }
             }
-
-            // Eventos botões
-            const buttons = document.querySelectorAll('.device-btn');
-            buttons[0].addEventListener('click', ligarIluminacao);
-            buttons[1].addEventListener('click', ligarIrrigacao);
-            buttons[2].addEventListener('click', ligarAquecimento);
-            buttons[3].addEventListener('click', ligarVentilacao);
-            testarApi();
-
+        
             // --- Controle do Switch ---
             const modeToggle = document.getElementById('modeToggle');
             const modeStatus = document.querySelector('.mode-status');
@@ -199,21 +185,27 @@
                     const data = await response.json();
                     console.log("Carregar modo:", data);
 
+                    // Atualiza toggle e texto imediatamente
                     if (data.atividade === 1) {
                         modeToggle.checked = true;
-                        modeStatus.textContent = "Modo Automático";
+                        modeStatus.textContent = "Modo Manual";
                     } else {
                         modeToggle.checked = false;
-                        modeStatus.textContent = "Modo Manual";
+                        modeStatus.textContent = "Modo Automático";
                     }
+
+                    // Atualiza os botões depois de carregar o modo
+                    atualizarBotoesVisual();
+
                 } catch (error) {
                     console.error("Erro ao carregar modo:", error);
                     modeToggle.checked = false;
                     modeStatus.textContent = "Modo Automático";
+                    atualizarBotoesVisual();
                 }
             }
 
-            // Atualizar valor no backend
+            // Atualizar valor no backend (não muda o texto aqui)
             async function atualizarModo(atividade) {
                 try {
                     const response = await fetch('http://localhost:88/GreenHaven/aula3004/api/switch', {
@@ -222,7 +214,6 @@
                         body: JSON.stringify({ atividade })
                     });
                     const data = await response.json();
-                    modeStatus.textContent = (data.atividade === 1) ? "Modo Manual" : "Modo Automático";
                     console.log("Resposta PUT:", data);
                 } catch (error) {
                     console.error("Erro ao atualizar modo:", error);
@@ -231,15 +222,69 @@
 
             // Listener do toggle
             modeToggle.addEventListener('change', () => {
-                const atividade = modeToggle.checked ? 1 : 0;
-                console.log("Mudou! Novo valor:", atividade);
-                atualizarModo(atividade);
+                const manual = modeToggle.checked;
+
+                // Atualiza texto imediatamente
+                modeStatus.textContent = manual ? "Modo Automático" : "Modo Manual";
+
+                // Atualiza backend
+                atualizarModo(manual ? 1 : 0);
+
+                // Atualiza botões visuais
+                atualizarBotoesVisual();
             });
+
+            // --- FUNÇÃO DE CONTROLE DOS ATUADORES ---
+                    const atuadores = [
+                { id: 1, btnId: 'btn-iluminacao' },
+                { id: 2, btnId: 'btn-irrigacao' },
+                { id: 3, btnId: 'btn-aquecimento' },
+                { id: 4, btnId: 'btn-ventilacao' },
+            ];
+
+            async function atualizarBotao(atuador) {
+                try {
+                    const res = await fetch(`http://localhost:88/GreenHaven/aula3004/api/atuador/${atuador.id}`, { method: 'GET' });
+                    const data = await res.json();
+                    const ligado = data.status === 1 && modeToggle.checked;
+                    atuador.btn.classList.toggle('active', ligado);
+                    atuador.btn.disabled = !modeToggle.checked;
+                } catch (err) {
+                    console.error(`Erro ao carregar status do atuador ${atuador.id}:`, err);
+                }
+            }
+
+                atuadores.forEach(atuador => {
+                    const btn = document.getElementById(atuador.btnId);
+                    if (!btn) return console.error(`Botão ${atuador.btnId} não encontrado!`);
+                    atuador.btn = btn;
+
+                    btn.addEventListener('click', async () => {
+                        if (!modeToggle.checked) return;
+                        console.log(`Clique no atuador ${atuador.id}`);
+                        try {
+                            const res = await fetch(`http://localhost:88/GreenHaven/aula3004/api/atuador/${atuador.id}`, {
+                                method: 'PUT'
+                            });
+                            const data = await res.json();
+                            console.log("Resposta atuador:", data);
+                            btn.classList.toggle('active', data.status === 1 && modeToggle.checked);
+                        } catch (err) {
+                            console.error(`Erro ao alternar atuador ${atuador.id}:`, err);
+                        }
+                    });
+                });
+
+            // Atualiza todos os botões ao carregar
+            function atualizarBotoesVisual() {
+                atuadores.forEach(at => atualizarBotao(at));
+            }
 
             // Inicializa estado
             carregarModo();
         });
-    </script>
+        </script>
+        
 
     <script src="updateSensors.js" type="module"></script>
 </body>

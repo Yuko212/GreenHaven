@@ -98,59 +98,6 @@ else if($resource == 'controle')
     }
 }
 
-else if ($resource == 'iluminacao') {
-    switch ($method) {
-        case 'GET':
-            getIluminacao();
-            break;
-        case 'PUT':
-            updateIluminacao();
-            break;
-        default: // Para qualquer outro método não permitido
-        http_response_code(405); // Retorna status 405 (método não permitido).
-        echo json_encode(["error" => "Método não permitido"]); // Retorna um erro em formato JSON.
-    }
-}
-else if ($resource == 'irrigacao') {
-    switch ($method) {
-        case 'GET':
-            getIrrigacao();
-            break;
-        case 'PUT':
-            updateIrrigacao();
-            break;
-        default: // Para qualquer outro método não permitido
-        http_response_code(405); // Retorna status 405 (método não permitido).
-        echo json_encode(["error" => "Método não permitido"]); // Retorna um erro em formato JSON.
-    }
-}
-else if ($resource == 'aquecimento') {
-    switch ($method) {
-        case 'GET':
-            getAquecimento();
-            break;
-        case 'PUT':
-            updateAquecimento();
-            break;
-        default: // Para qualquer outro método não permitido
-        http_response_code(405); // Retorna status 405 (método não permitido).
-        echo json_encode(["error" => "Método não permitido"]); // Retorna um erro em formato JSON.
-    }
-}
-else if ($resource == 'ventilacao') {
-    switch ($method) {
-        case 'GET':
-            getVentilacao();
-            break;
-        case 'PUT':
-            updateVentilacao();
-            break;
-        default: // Para qualquer outro método não permitido
-        http_response_code(405); // Retorna status 405 (método não permitido).
-        echo json_encode(["error" => "Método não permitido"]); // Retorna um erro em formato JSON.
-    }
-}
-
 else if ($resource === 'dadosesp') {
     switch ($method) {
     case 'GET':
@@ -180,6 +127,57 @@ else if ($resource === 'switch') {
             $stmt->execute([$atividade]);
 
             echo json_encode(["success" => true, "atividade" => $atividade]);
+            break;
+
+        default:
+            http_response_code(405);
+            echo json_encode(["error" => "Método não permitido"]);
+            break;
+    }
+}
+
+else if ($resource === 'atuador') {
+    // Receber o ID do atuador pela URI, ex: /index.php/atuador/1
+    $id = (int)($uri[4] ?? 0);
+    if ($id < 1 || $id > 4) {
+        http_response_code(400);
+        echo json_encode(["error" => "ID de atuador inválido"]);
+        exit;
+    }
+
+    switch ($method) {
+        case 'GET':
+            // Busca status do atuador
+            $stmt = $db->prepare("SELECT status FROM atuadores WHERE id = ? LIMIT 1");
+            $stmt->execute([$id]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$result) {
+                http_response_code(404);
+                echo json_encode(["error" => "Atuador não encontrado"]);
+                exit;
+            }
+            echo json_encode(["status" => (int)$result['status']]);
+            break;
+
+        case 'PUT':
+            try {
+                // Alterna status
+                $stmt = $db->prepare("UPDATE atuadores SET status = 1 - status, data_hora = NOW() WHERE id = ?");
+                $stmt->execute([$id]);
+
+                // Retorna novo status
+                $stmt = $db->prepare("SELECT status FROM atuadores WHERE id = ? LIMIT 1");
+                $stmt->execute([$id]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode([
+                    "success" => true,
+                    "status" => (int)$result['status']
+                ]);
+            } catch (PDOException $e) {
+                http_response_code(500);
+                echo json_encode(["error" => "Erro ao atualizar atuador: " . $e->getMessage()]);
+            }
             break;
 
         default:
@@ -329,115 +327,6 @@ function updateControleManual() {
     try {
         $stmt = $db->prepare("UPDATE controle SET atividade = ? WHERE id = 1");
         $stmt->execute([$data['atividade']]);
-        echo json_encode(["message" => "Sensor atualizado com sucesso"]); // Retorna uma mensagem de sucesso.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao atualizar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-
-// === FUNÇÕES ILUMINAÇÃO===
-function getIluminacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    try {
-        $stmt = $db->query("SELECT * FROM `atuadores` WHERE id = 1;"); // Executa uma consulta para obter os dados do controle.
-        $controle = $stmt->fetchAll(PDO::FETCH_ASSOC); // Busca todos os resultados como um array associativo.
-        echo json_encode($controle); // Retorna os dados do controle em formato JSON.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao buscar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-function updateIluminacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    $data = getJsonInput(); // Obtém os dados da requisição em formato JSON.
-
-    try {
-        $stmt = $db->prepare("UPDATE atuadores SET status = ? WHERE id = 1");
-        $stmt->execute([$data['status']]);
-        echo json_encode(["message" => "Sensor atualizado com sucesso"]); // Retorna uma mensagem de sucesso.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao atualizar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-// === FUNÇÕES IRRIGAÇÃO===
-function getIrrigacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    try {
-        $stmt = $db->query("SELECT * FROM `atuadores` WHERE id = 2;"); // Executa uma consulta para obter os dados do controle.
-        $controle = $stmt->fetchAll(PDO::FETCH_ASSOC); // Busca todos os resultados como um array associativo.
-        echo json_encode($controle); // Retorna os dados do controle em formato JSON.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao buscar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-function updateIrrigacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    $data = getJsonInput(); // Obtém os dados da requisição em formato JSON.
-
-    try {
-        $stmt = $db->prepare("UPDATE atuadores SET status = ? WHERE id = 2");
-        $stmt->execute([$data['status']]);
-        echo json_encode(["message" => "Sensor atualizado com sucesso"]); // Retorna uma mensagem de sucesso.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao atualizar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-// === FUNÇÕES AQUECIMENTO===
-function getAquecimento() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    try {
-        $stmt = $db->query("SELECT * FROM `atuadores` WHERE id = 3;"); // Executa uma consulta para obter os dados do controle.
-        $controle = $stmt->fetchAll(PDO::FETCH_ASSOC); // Busca todos os resultados como um array associativo.
-        echo json_encode($controle); // Retorna os dados do controle em formato JSON.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao buscar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-function updateAquecimento() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    $data = getJsonInput(); // Obtém os dados da requisição em formato JSON.
-
-    try {
-        $stmt = $db->prepare("UPDATE atuadores SET status = ? WHERE id = 3");
-        $stmt->execute([$data['status']]);
-        echo json_encode(["message" => "Sensor atualizado com sucesso"]); // Retorna uma mensagem de sucesso.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao atualizar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-// === FUNÇÕES VENTILAÇÃO===
-function getVentilacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    try {
-        $stmt = $db->query("SELECT * FROM `atuadores` WHERE id = 4;"); // Executa uma consulta para obter os dados do controle.
-        $controle = $stmt->fetchAll(PDO::FETCH_ASSOC); // Busca todos os resultados como um array associativo.
-        echo json_encode($controle); // Retorna os dados do controle em formato JSON.
-    } catch (PDOException $e) {
-        http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
-        echo json_encode(["error" => "Erro ao buscar controle manual: " . $e->getMessage()]); // Retorna um erro em formato JSON.
-    }
-}
-
-function updateVentilacao() {
-    global $db; // Acessa a variável global de conexão com o banco de dados.
-    $data = getJsonInput(); // Obtém os dados da requisição em formato JSON.
-
-    try {
-        $stmt = $db->prepare("UPDATE atuadores SET status = ? WHERE id = 4");
-        $stmt->execute([$data['status']]);
         echo json_encode(["message" => "Sensor atualizado com sucesso"]); // Retorna uma mensagem de sucesso.
     } catch (PDOException $e) {
         http_response_code(500); // Retorna status 500 (erro interno do servidor) em caso de falha.
